@@ -1,22 +1,23 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"]
 })
 export class AppComponent {
-  title = 'Hello Angular';
 
+  title = "Hello Angular";
 
-  data = {
-    message: 'Placki',
-    getMessage(prefix){
-      return prefix + ' ' + this.message
-    }
-  }
+  counter = 0;
 
-  alert(msg){
-    alert(msg)
+  constructor() {
+
+    setInterval(()=>{
+
+        this.counter++;
+
+    },500)    
+    // console.log(this)
   }
 }
