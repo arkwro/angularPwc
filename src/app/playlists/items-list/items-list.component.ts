@@ -37,19 +37,7 @@ export class ItemsListComponent implements OnInit {
     return item.id;
   }
 
-  constructor() {
-    setInterval(() => {
-      this.playlists = [
-        ...this.playlists.map(p => ({
-          ...p
-        })),
-        <any>{
-          id: Date.now(),
-          name: "Placki " + Date.now()
-        }
-      ];
-    }, 1000);
-  }
+  constructor() {}
 
   ngOnInit() {}
 }
