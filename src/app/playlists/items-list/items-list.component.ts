@@ -33,6 +33,12 @@ export class ItemsListComponent implements OnInit {
     }
   ];
 
+  selected: Playlist;
+
+  select(playlist: Playlist) {
+    this.selected = this.selected == playlist ? null : playlist;
+  }
+
   indexFn(index, item) {
     return item.id;
   }

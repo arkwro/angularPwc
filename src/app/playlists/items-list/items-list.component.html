@@ -3,21 +3,23 @@
 
 <div class="list-group">
 
-  <div class="list-group-item"
-    
-  [class.ala]="true"
-  [class.placki]="true"
-  [class.kot]="true"
+  <div class="list-group-item" 
+      *ngFor="let playlist of playlists; index as i; trackBy indexFn" 
 
-  [ngClass]="{
-    ala: 1+1,
-    placki: 'yes!!',
-    kot: '0' == 1
-  }"
-
-  *ngFor="let playlist of playlists; index as i; trackBy indexFn">
+      (click)="select(playlist)"
+      [class.active]="selected == playlist">
 
     {{i+1}}. {{playlist.name}}
   </div>
 
 </div>
+
+<!-- [class.ala]="true"
+[class.placki]="true"
+[class.kot]="true"
+
+[ngClass]="{
+  ala: 1+1,
+  placki: 'yes!!',
+  kot: '0' == 1
+} -->
