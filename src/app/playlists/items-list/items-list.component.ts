@@ -1,5 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { Playlist } from "../../models/playlist";
+import { NgForOfContext, NgForOf } from "@angular/common";
+
+NgForOfContext;
+NgForOf;
 
 @Component({
   selector: "app-items-list",
@@ -8,8 +12,7 @@ import { Playlist } from "../../models/playlist";
   encapsulation: ViewEncapsulation.Emulated
 })
 export class ItemsListComponent implements OnInit {
-
-  playlist: Playlist[] = [
+  playlists: Playlist[] = [
     {
       id: 123,
       name: "Angular Hits",
@@ -30,7 +33,23 @@ export class ItemsListComponent implements OnInit {
     }
   ];
 
-  constructor() {}
+  indexFn(index, item) {
+    return item.id;
+  }
+
+  constructor() {
+    setInterval(() => {
+      this.playlists = [
+        ...this.playlists.map(p => ({
+          ...p
+        })),
+        <any>{
+          id: Date.now(),
+          name: "Placki " + Date.now()
+        }
+      ];
+    }, 1000);
+  }
 
   ngOnInit() {}
 }
