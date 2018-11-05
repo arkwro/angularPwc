@@ -2,7 +2,7 @@
 
 
 
-<div *ngIf="mode == 'show'; else formRef" class="placki">
+<div *ngIf="mode == 'show'" class="placki">
 
   <dl [attr.title]="playlist.name">
     <dt>Name:</dt>
@@ -20,27 +20,22 @@
 </div>
 
 
-
-<ng-template #formRef>
-
-  <div>
-    <div class="form-group">
-      <label>Name:</label>
-      <input type="text" class="form-control" [(ngModel)]="playlist.name">
-    </div>
-
-    <div class="form-group">
-      <label>Favourite:</label>
-      <input type="checkbox" [(ngModel)]="playlist.favourite">
-    </div>
-
-    <div class="form-group">
-      <label>Color</label>
-      <input type="color" [(ngModel)]="playlist.color">
-    </div>
-
-    <input type="button" value="Cancel" class="btn btn-danger" (click)="cancel()">
-    <input type="button" value="Save" class="btn btn-success" (click)="save()">
+<div *ngIf="mode == 'edit'">
+  <div class="form-group">
+    <label>Name:</label>
+    <input type="text" class="form-control" [(ngModel)]="playlist.name">
   </div>
 
-</ng-template>
+  <div class="form-group">
+    <label>Favourite:</label>
+    <input type="checkbox" [(ngModel)]="playlist.favourite">
+  </div>
+
+  <div class="form-group">
+    <label>Color</label>
+    <input type="color" [(ngModel)]="playlist.color">
+  </div>
+
+  <input type="button" value="Cancel" class="btn btn-danger" (click)="cancel()">
+  <input type="button" value="Save" class="btn btn-success" (click)="save()">
+</div>
