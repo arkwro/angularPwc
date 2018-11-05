@@ -8,5 +8,7 @@ if (environment.production) {
   enableProdMode();
 }
 
+// angular.bootstap(document.body, ['my_module'])
+
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
