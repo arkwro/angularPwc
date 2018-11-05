@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { Component, OnInit, ViewEncapsulation, Input } from "@angular/core";
 import { Playlist } from "../../models/playlist";
 import { NgForOfContext, NgForOf } from "@angular/common";
 
@@ -10,28 +10,14 @@ NgForOf;
   templateUrl: "./items-list.component.html",
   styleUrls: ["./items-list.component.css"],
   encapsulation: ViewEncapsulation.Emulated
+  // inputs:[
+  //   'playlists:items'
+  // ]
 })
 export class ItemsListComponent implements OnInit {
-  playlists: Playlist[] = [
-    {
-      id: 123,
-      name: "Angular Hits",
-      favourite: true,
-      color: "#ff00ff"
-    },
-    {
-      id: 234,
-      name: "Best of Angular ",
-      favourite: false,
-      color: "#00ffff"
-    },
-    {
-      id: 345,
-      name: "Angular Top 20",
-      favourite: true,
-      color: "#ffff00"
-    }
-  ];
+  
+  @Input("items")
+  playlists: Playlist[] = [];
 
   selected: Playlist;
 

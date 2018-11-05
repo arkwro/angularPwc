@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { Playlist } from "../../models/playlist";
 
 enum Modes {
@@ -12,14 +12,9 @@ enum Modes {
   styleUrls: ["./playlist-details.component.css"]
 })
 export class PlaylistDetailsComponent implements OnInit {
-  playlist: Playlist = {
-    id: 123,
-    name: "Angular Hits",
-    favourite: true,
-    color: "#ff00ff"
-  };
-  // modes = Modes
-  // mode:Modes = Modes.show
+  
+  @Input()
+  playlist: Playlist;
 
   mode: "show" | "edit" = "show";
 
