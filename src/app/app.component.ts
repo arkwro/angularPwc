@@ -6,5 +6,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'pwc-angular';
+  title = 'Hello Angular';
+
+
+  data = {
+    message: 'Placki',
+    getMessage(prefix){
+      return prefix + ' ' + this.message
+    }
+  }
+
+  alert(msg){
+    alert(msg)
+  }
 }
