@@ -1,3 +1,41 @@
-<p>
-  playlist-details works!
-</p>
+<div>
+
+  <!-- dl>(dt+dd)*3 -->
+  <dl [attr.title]="playlist.name">
+    <dt>Name:</dt>
+    <dd>{{playlist.name}}</dd>
+
+    <dt>Favourite:</dt>
+    <dd>{{playlist.favourite? 'Yes':'No'}}</dd>
+
+    <dt>Color</dt>
+    <dd [style.color]="playlist.color">
+      {{playlist.color}}
+    </dd>
+  </dl>
+
+</div>
+
+
+<div>
+  <!-- .form-group*3>label+input.form-control -->
+
+  <div class="form-group">
+    <label>Name:</label>
+    <input type="text" class="form-control" [value]="playlist.name"
+        (input)=" playlist.name = $event.target.value ">
+  </div>
+
+  <div class="form-group">
+    <label>Favourite:</label>
+    <input type="checkbox" [checked]="playlist.favourite">
+  </div>
+
+  <div class="form-group">
+    <label>Color</label>
+    <input type="color" [value]="playlist.color">
+  </div>
+
+
+
+</div>

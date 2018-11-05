@@ -12,7 +12,7 @@ export class PlaylistDetailsComponent implements OnInit {
     id: 123,
     name: "Angular Hits",
     favourite: true,
-    color: "#ff0000"
+    color: "#ff00ff"
   };
 
   constructor() {}
