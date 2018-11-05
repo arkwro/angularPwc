@@ -3,6 +3,8 @@ import {
   ChangeDetectorRef,
   ChangeDetectionStrategy
 } from "@angular/core";
+// // CSS modules:
+// import {klasaA,klasaB} from './plik.css' 
 
 @Component({
   selector: "app-root",
