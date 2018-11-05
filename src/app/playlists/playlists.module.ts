@@ -5,6 +5,8 @@ import { ItemsListComponent } from "./items-list/items-list.component";
 import { ListItemComponent } from "./list-item/list-item.component";
 import { PlaylistDetailsComponent } from "./playlist-details/playlist-details.component";
 
+import { FormsModule } from '@angular/forms'
+
 @NgModule({
   declarations: [
     PlaylistsViewComponent,
@@ -12,7 +14,7 @@ import { PlaylistDetailsComponent } from "./playlist-details/playlist-details.co
     ListItemComponent,
     PlaylistDetailsComponent
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   exports: [PlaylistsViewComponent]
 })
 export class PlaylistsModule {}
