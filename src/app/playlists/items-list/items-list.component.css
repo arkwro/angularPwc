@@ -1,0 +1,13 @@
+:host(.bordered) {
+  display: block;
+  border: 1px solid black;
+}
+
+:host-context(.holiday-theme) p {
+  color: hotpink;
+}
+
+/* 
+:host ::ng-deep p{
+  color:red;
+} */
