@@ -1,9 +1,10 @@
-import { Component } from "@angular/core";
+import { Component, ChangeDetectorRef, ChangeDetectionStrategy } from "@angular/core";
 
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"]
+  styleUrls: ["./app.component.css"],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
 
@@ -11,12 +12,13 @@ export class AppComponent {
 
   counter = 0;
 
-  constructor() {
+  constructor(cdr: ChangeDetectorRef) {
 
     setInterval(()=>{
 
         this.counter++;
 
+        cdr.detectChanges()
     },500)    
     // console.log(this)
   }

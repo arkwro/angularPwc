@@ -10,5 +10,7 @@ if (environment.production) {
 
 // angular.bootstap(document.body, ['my_module'])
 
-platformBrowserDynamic().bootstrapModule(AppModule)
+platformBrowserDynamic().bootstrapModule(AppModule,{
+  // ngZone:'noop'
+})
   .catch(err => console.error(err));
