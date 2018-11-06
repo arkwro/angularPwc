@@ -18,6 +18,22 @@
         <app-playlists-view></app-playlists-view>
       </ng-container>
 
+<!-- 
+      <data-grid> // ie. Material Design Table, CDK data - table 
+
+          <tr *gridRowTpl="let row; colums:['id','title']"  [class.selected]="row.isSelected()"></tr>   
+          
+          <td *gridCellTpl="name: 'title'; let row">{{row.title}}</td>
+
+      </data-grid> -->
+
+<!-- 
+      <div *appProducts="let product; where {price:{$gt:100}}; sortBy 'price desc' ">
+        {{product.name}}
+      </div>
+ -->
+
+
       <!-- 
       <ng-template [appUnless]="hide" let-costam let-m="message">
 
