@@ -2,22 +2,39 @@ import {
   Directive,
   TemplateRef,
   ViewContainerRef,
-  ComponentFactoryResolver
+  ComponentFactoryResolver,
+  ViewRef
 } from "@angular/core";
 import { PlaylistsViewComponent } from "../playlists/playlists-view/playlists-view.component";
+import { Input } from "@angular/core";
 
 @Directive({
   selector: "[appUnless]"
 })
 export class UnlessDirective {
+
+  viewCache:ViewRef
+
+  @Input()
+  set appUnless(hide) {
+    if (hide) {
+      // this.vcr.clear()
+      this.viewCache = this.vcr.detach(0)
+
+    } else {
+     
+      if(this.viewCache){
+        this.vcr.insert(this.viewCache,0)
+      }else{
+        this.vcr.createEmbeddedView(this.tpl, {
+          $implicit: "Placki",
+          message: "Awesome"
+        });
+      }
+    }
+  }
+
   constructor(private tpl: TemplateRef<any>, private vcr: ViewContainerRef) {
-
-    
-    this.vcr.createEmbeddedView(this.tpl, {
-      $implicit: "Placki",
-      message: "Awesome"
-    });
-
     console.log("hello unless");
   }
 }

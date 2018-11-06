@@ -9,13 +9,20 @@
         Music App 😋!
       </h1>
 
-<ng-template appUnless let-costam let-m="message">
+      <button (click)="hide = !hide">
+        Toggle {{hide}}
+      </button>
 
-  <div>Lubie {{costam}} - {{m}}</div>
+      <ng-template [appUnless]="hide" 
+      
+      let-costam 
+      let-m="message">
 
-</ng-template>
+        <div>Lubie {{costam}} - {{m}}</div>
+        <app-playlists-view></app-playlists-view>
 
-      <!-- <app-playlists-view></app-playlists-view> -->
+      </ng-template>
+
     </div>
   </div>
 </div>
