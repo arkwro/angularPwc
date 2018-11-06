@@ -14,7 +14,8 @@
   </div>
   <div class="col">
 
-    <app-playlist-details [playlist]="selected" *ngIf="selected">
+    <app-playlist-details [playlist]="selected"
+    (playlistChange)="savePlaylist($event)" *ngIf="selected">
     </app-playlist-details>
 
     <p *ngIf="!selected">Please select playlist</p>
