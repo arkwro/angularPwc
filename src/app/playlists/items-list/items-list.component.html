@@ -9,9 +9,7 @@
   <div class="list-group-item" 
   *ngFor="let playlist of playlists; index as i; trackBy indexFn" 
 
-      appHighlight
-
-      color="blue"
+      [appHighlight]="playlist.color"
   
       (click)="select(playlist)"
       [class.active]="selected == playlist">

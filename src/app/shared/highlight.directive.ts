@@ -1,19 +1,18 @@
-import { Directive, ElementRef, Attribute } from "@angular/core";
+import { Directive, ElementRef, Attribute, Input } from "@angular/core";
 
 @Directive({
   selector: "[appHighlight]"
 })
 export class HighlightDirective {
-
   
+  @Input()
+  appHighlight;
 
-  constructor(
-    @Attribute('color') color,
-    elem: ElementRef) {
-  
-    console.log("hello", elem.nativeElement);
+  constructor(private elem: ElementRef) {}
 
-    elem.nativeElement.style.color = color;
-  
+  ngOnInit() {
+    console.log("hello", this.appHighlight);
+
+    this.elem.nativeElement.style.color = this.appHighlight;
   }
 }
