@@ -1,14 +1,16 @@
 
+      <!-- [style.borderLeftColor]="hover == playlist.id? playlist.color: '' "
+
+      (mouseenter)=" hover = playlist.id "
+      (mouseleave)=" hover = null " -->
+
 <div class="list-group">
   
   <div class="list-group-item" 
   *ngFor="let playlist of playlists; index as i; trackBy indexFn" 
+
+      appHighlight
   
-      [style.borderLeftColor]="hover == playlist.id? playlist.color: '' "
-
-      (mouseenter)=" hover = playlist.id "
-      (mouseleave)=" hover = null "
-
       (click)="select(playlist)"
       [class.active]="selected == playlist">
 

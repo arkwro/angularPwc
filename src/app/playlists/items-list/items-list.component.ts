@@ -16,8 +16,6 @@ NgForOf;
 })
 export class ItemsListComponent implements OnInit {
 
-  hover:Playlist['id']
-  
   @Input("items")
   playlists: Playlist[] = [];
 
