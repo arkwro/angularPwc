@@ -12,9 +12,8 @@ enum Modes {
   styleUrls: ["./playlist-details.component.css"]
 })
 export class PlaylistDetailsComponent implements OnInit {
-  
   @Input()
-  playlist: Playlist
+  playlist: Playlist;
 
   mode: "show" | "edit" = "show";
 
@@ -26,8 +25,8 @@ export class PlaylistDetailsComponent implements OnInit {
     this.mode = "show";
   }
 
-  save() {
-    console.log("save");
+  save(...args) {
+    console.log("save",args);
   }
 
   constructor() {}
