@@ -15,6 +15,7 @@ import { SharedModule } from "../shared/shared.module";
     ListItemComponent,
     PlaylistDetailsComponent
   ],
+  entryComponents:[PlaylistsViewComponent],
   imports: [CommonModule, FormsModule, SharedModule],
   exports: [PlaylistsViewComponent]
 })
