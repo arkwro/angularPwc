@@ -1,40 +1,46 @@
-import { SimpleChanges } from '@angular/core';
+import { Input } from "@angular/core";
 import {
+  SimpleChanges,
+  Output,
+  EventEmitter,
+  HostBinding,
+  HostListener,
   Directive,
-  ElementRef
-  Input,
+  ElementRef,
   Renderer2,
   OnChanges,
   DoCheck
 } from "@angular/core";
 
 @Directive({
-  selector: "[appHighlight]",
+  selector: "[appHighlight]"
   // host:{
   //   '[style.borderLeftColor]':'appHighlight',
   //   '(mouseenter)':'activate($event)'
   // }
 })
-export class HighlightDirective implements OnChanges, DoCheck {
+export class HighlightDirective {
   @Input()
   appHighlight;
+  
+  @HostBinding("style.color")
+  currentColor
+
+  hover = false;
 
   constructor(private elem: ElementRef, private renderer: Renderer2) {}
 
-  ngOnChanges(changes:SimpleChanges) {
-    // console.log("ngOnChange",changes);
-    this.renderer.setStyle(this.elem.nativeElement, "color", this.appHighlight);
+  @HostListener("mouseenter", ["$event.x", "$event.y"])
+  activate(x: number, y: number) {
+    this.hover = true;
   }
   
-  ngDoCheck() {
-    // console.log("ngDoCheck");
+  @HostListener("mouseleave")
+  deactivate(x: number, y: number) {
+    this.hover = false;
   }
 
-  ngOnInit() {
-    // console.log("hello", this.appHighlight);
-  }
-
-  ngOnDestroy(){
-
+  ngDoCheck(){
+    // this.renderer.setStyle(this.elem.nativeElement, "color", this.hover ? this.appHighlight : '');
   }
 }
