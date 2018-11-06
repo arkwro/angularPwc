@@ -22,25 +22,23 @@ import {
 export class HighlightDirective {
   @Input()
   appHighlight;
-  
+
   @HostBinding("style.color")
-  currentColor
+  get currentColor() {
+    return this.hover ? this.appHighlight : "";
+  }
 
   hover = false;
 
-  constructor(private elem: ElementRef, private renderer: Renderer2) {}
+  constructor() {}
 
   @HostListener("mouseenter", ["$event.x", "$event.y"])
   activate(x: number, y: number) {
     this.hover = true;
   }
-  
+
   @HostListener("mouseleave")
   deactivate(x: number, y: number) {
     this.hover = false;
-  }
-
-  ngDoCheck(){
-    // this.renderer.setStyle(this.elem.nativeElement, "color", this.hover ? this.appHighlight : '');
   }
 }
