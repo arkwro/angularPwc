@@ -30,6 +30,10 @@ export class PlaylistsViewComponent implements OnInit {
 
   selected: Playlist;
 
+  select(playlist: Playlist) {
+    this.selected = this.selected == playlist ? null : playlist;
+  }
+
   constructor() {}
 
   ngOnInit() {}
