@@ -30,6 +30,7 @@ export class ItemsListComponent implements OnInit {
   }
 
   indexFn(index, item) {
+    // console.log(index,item)
     return item.id;
   }
 
