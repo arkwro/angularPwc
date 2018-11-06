@@ -42,3 +42,4 @@ export class HighlightDirective {
     this.hover = false;
   }
 }
+// console.log(HighlightDirective)
