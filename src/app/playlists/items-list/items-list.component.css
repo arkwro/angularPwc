@@ -7,6 +7,10 @@
   color: hotpink;
 }
 
+.list-group-item {
+  border-left: 10px solid;
+}
+
 /* 
 :host ::ng-deep p{
   color:red;
