@@ -1,30 +1,24 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { TabsComponent } from '../tabs/tabs.component';
+import { Component, OnInit, Input, EventEmitter } from "@angular/core";
 
 @Component({
-  selector: 'app-tab',
-  templateUrl: './tab.component.html',
-  styleUrls: ['./tab.component.css']
+  selector: "app-tab",
+  templateUrl: "./tab.component.html",
+  styleUrls: ["./tab.component.css"]
 })
 export class TabComponent implements OnInit {
-
   @Input()
-  title
+  title;
 
-  open = false
+  open = false;
 
-  toggle(){
-    this.tabs.toggle(this)
+  activeChange= new EventEmitter()
+
+  toggle() {
+   this.activeChange.emit()
   }
 
-  constructor(
-    private tabs: TabsComponent
-  ) { 
-    tabs.register(this)
-  }
+  constructor() // private tabs: TabsComponent
+  {}
 
-  ngOnInit() {
-
-  }
-
+  ngOnInit() {}
 }

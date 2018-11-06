@@ -1,30 +1,51 @@
-import { Component, OnInit } from '@angular/core';
-import { TabComponent } from '../tab/tab.component';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ContentChildren,
+  QueryList
+} from "@angular/core";
+import { TabComponent } from "../tab/tab.component";
+import { TabsNavComponent } from "../tabs-nav/tabs-nav.component";
 
 @Component({
-  selector: 'app-tabs',
-  templateUrl: './tabs.component.html',
-  styleUrls: ['./tabs.component.css']
+  selector: "app-tabs",
+  templateUrl: "./tabs.component.html",
+  styleUrls: ["./tabs.component.css"]
+  // queries:{
+  //   'nav':'navRef'
+  // }
 })
 export class TabsComponent implements OnInit {
+  @ViewChild("navRef")
+  nav: TabsNavComponent;
 
-  active:TabComponent
-  tabs: TabComponent[] = []
+  @ContentChildren(TabComponent)
+  tabs: QueryList<TabComponent>;
 
-  toggle(active:TabComponent) {
-    this.active = active == this.active? null : active;
+  active: TabComponent;
+
+  ngAfterContentInit() {
     this.tabs.forEach(tab => {
-      tab.open = tab == this.active
-    })
+      tab.activeChange.subscribe(() => {
+        this.toggle(tab)
+      });
+    });
   }
 
-  register(tab:TabComponent){
-    this.tabs.push(tab)
+  ngAfterViewInit() {
+    this.nav.tabs = this.tabs;
   }
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  toggle(active: TabComponent) {
+    this.active = active == this.active ? null : active;
+    this.tabs.forEach(tab => {
+      tab.open = tab == this.active;
+    });
+    this.nav.active = this.active
   }
-
 }
