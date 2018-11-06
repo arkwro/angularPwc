@@ -13,15 +13,18 @@
         Toggle {{hide}}
       </button>
 
-      <ng-template [appUnless]="hide" 
-      
-      let-costam 
-      let-m="message">
+      <ng-container *appUnless="hide; let costam; message as m ">
+        <div>Lubie {{costam}} - {{m}}</div>
+        <app-playlists-view></app-playlists-view>
+      </ng-container>
+
+      <!-- 
+      <ng-template [appUnless]="hide" let-costam let-m="message">
 
         <div>Lubie {{costam}} - {{m}}</div>
         <app-playlists-view></app-playlists-view>
 
-      </ng-template>
+      </ng-template> -->
 
     </div>
   </div>
