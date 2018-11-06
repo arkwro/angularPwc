@@ -2,33 +2,31 @@
 
 <div [ngSwitch]="mode">
 
-  <div *ngSwitchDefault>
+  <app-card *ngSwitchDefault>
 
-    <app-card>
-      <ng-container ngProjectAs="card-title">
-        Playlist "{{playlist.name}}"
-      </ng-container>
+    <ng-container ngProjectAs="card-title">
+      Playlist "{{playlist.name}}"
+    </ng-container>
 
-      <dl [attr.title]="playlist.name">
-        <dt>Name:</dt>
-        <dd>{{playlist.name}}</dd>
+    <dl [attr.title]="playlist.name">
+      <dt>Name:</dt>
+      <dd>{{playlist.name}}</dd>
 
-        <dt>Favourite:</dt>
-        <dd>{{playlist.favourite? 'Yes':'No'}}</dd>
+      <dt>Favourite:</dt>
+      <dd>{{playlist.favourite? 'Yes':'No'}}</dd>
 
-        <dt>Color</dt>
-        <dd [style.color]="playlist.color">
-          {{playlist.color}}
-        </dd>
-      </dl>
+      <dt>Color</dt>
+      <dd [style.color]="playlist.color">
+        {{playlist.color}}
+      </dd>
+    </dl>
 
-      <ng-container ngProjectAs="card-footer">
-        <input type="button" value="Edit" class="btn btn-info" (click)="edit()">
-      </ng-container>
+    <ng-container ngProjectAs="card-footer">
+      <input type="button" value="Edit" class="btn btn-info" (click)="edit()">
+    </ng-container>
 
-    </app-card>
 
-  </div>
+  </app-card>
 
 
   <form *ngSwitchCase=" 'edit' " #formRef="ngForm" (submit)="save(formRef)">
