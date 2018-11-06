@@ -22,17 +22,17 @@
   <div *ngSwitchCase=" 'edit' ">
     <div class="form-group">
       <label>Name:</label>
-      <input type="text" class="form-control" [ngModel]="playlist.name" #nameRef>
+      <input type="text" class="form-control" [ngModel]="playlist.name" #nameRef="ngModel">
     </div>
 
     <div class="form-group">
       <label>Favourite:</label>
-      <input type="checkbox" [ngModel]="playlist.favourite" #favouriteRef>
+      <input type="checkbox" [ngModel]="playlist.favourite" #favouriteRef="ngModel">
     </div>
 
     <div class="form-group">
       <label>Color</label>
-      <input type="color" [ngModel]="playlist.color" #colorRef>
+      <input type="color" [ngModel]="playlist.color" #colorRef="ngModel">
     </div>
 
     <input type="button" value="Cancel" class="btn btn-danger" (click)="cancel()">
