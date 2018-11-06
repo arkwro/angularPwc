@@ -14,7 +14,7 @@ enum Modes {
 export class PlaylistDetailsComponent implements OnInit {
   
   @Input()
-  playlist: Playlist;
+  playlist: Playlist
 
   mode: "show" | "edit" = "show";
 

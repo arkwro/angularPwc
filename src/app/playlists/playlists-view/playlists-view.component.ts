@@ -28,7 +28,7 @@ export class PlaylistsViewComponent implements OnInit {
     }
   ];
 
-  selected = this.playlists[2]
+  selected: Playlist;
 
   constructor() {}
 

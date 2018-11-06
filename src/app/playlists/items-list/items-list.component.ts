@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, Input } from "@angular/core";
+import { Component, OnInit, ViewEncapsulation, Input, EventEmitter, Output } from "@angular/core";
 import { Playlist } from "../../models/playlist";
 import { NgForOfContext, NgForOf } from "@angular/common";
 
@@ -19,10 +19,15 @@ export class ItemsListComponent implements OnInit {
   @Input("items")
   playlists: Playlist[] = [];
 
-  selected: Playlist;
+  selected: Playlist | null;
+
+  @Output()
+  selectedChange = new EventEmitter<Playlist>()
 
   select(playlist: Playlist) {
     this.selected = this.selected == playlist ? null : playlist;
+
+    this.selectedChange.emit(playlist)
   }
 
   indexFn(index, item) {
