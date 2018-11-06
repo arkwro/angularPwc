@@ -29,8 +29,8 @@
   </app-card>
 
 
-  <form *ngSwitchCase=" 'edit' " #formRef="ngForm" (submit)="save(formRef)">
-    <app-card>
+  <form  #formRef="ngForm" (submit)="save(formRef)">
+    <app-card *ngSwitchCase=" 'edit' ">
       <ng-container ngProjectAs="card-title">Edit Playlist</ng-container>
 
       <div class="form-group">

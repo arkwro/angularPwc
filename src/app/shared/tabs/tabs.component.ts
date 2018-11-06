@@ -34,7 +34,14 @@ export class TabsComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.nav.tabs = this.tabs;
+    this.nav.activeChange.subscribe(tab=>{
+      this.toggle(tab)
+    })
+
+    // ExpressionChangedAfterItHasBeenCheckedError: ;-)
+    setTimeout(()=>{
+      this.nav.tabs = this.tabs;
+    })
   }
 
   constructor() {}
