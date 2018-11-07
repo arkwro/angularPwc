@@ -6,6 +6,7 @@ import { AppComponent } from "./app.component";
 import { PlaylistsModule } from "./playlists/playlists.module";
 import { SharedModule } from "./shared/shared.module";
 import { SearchModule } from "./search/search.module";
+import { environment } from "src/environments/environment";
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,7 +15,9 @@ import { SearchModule } from "./search/search.module";
     AppRoutingModule,
     PlaylistsModule,
     SharedModule,
-    SearchModule
+    SearchModule.forRoot({
+      search_api_url: environment.search_api_url
+    })
   ],
   providers: [],
   // entryComponents:[AppComponent]
