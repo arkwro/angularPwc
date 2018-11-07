@@ -4,6 +4,7 @@ import { MusicSearchComponent } from "./music-search/music-search.component";
 import { SearchFormComponent } from "./search-form/search-form.component";
 import { AlbumsGridComponent } from "./albums-grid/albums-grid.component";
 import { AlbumCardComponent } from "./album-card/album-card.component";
+import { environment } from "src/environments/environment";
 
 @NgModule({
   declarations: [
@@ -13,6 +14,12 @@ import { AlbumCardComponent } from "./album-card/album-card.component";
     AlbumCardComponent
   ],
   imports: [CommonModule],
-  exports: [MusicSearchComponent]
+  exports: [MusicSearchComponent],
+  providers: [
+    {
+      provide: "SEARCH_API_URL",
+      useValue: environment.search_api_url
+    }
+  ]
 })
 export class SearchModule {}
