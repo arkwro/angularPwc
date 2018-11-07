@@ -26,7 +26,7 @@ export class SecurityService {
         response_type
       }
     });
-    sessionStorage.removeItem("token")
+    sessionStorage.removeItem("token");
     location.replace(`${this.config.auth_url}?${params.toString()}`);
   }
 
@@ -34,15 +34,15 @@ export class SecurityService {
 
   getToken() {
     if (!this.token) {
-      this.token = JSON.parse(sessionStorage.getItem("token"));
+      this.token = JSON.parse(sessionStorage.getItem("token") || "null");
     }
 
     if (!this.token && location.hash) {
       const params = new HttpParams({
         fromString: location.hash
       });
-      this.token = params.get("#access_token");
-      location.hash = ''
+      this.token = params.get("#access_token") || '';
+      location.hash = "";
       sessionStorage.setItem("token", JSON.stringify(this.token));
     }
 

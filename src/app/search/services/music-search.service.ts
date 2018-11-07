@@ -3,7 +3,6 @@ import { Album } from "src/app/models/album";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { SecurityService } from "../../security/security.service";
 import { AlbumsResponse } from "../../models/album";
-import { Observable, empty, throwError } from "rxjs";
 
 export const SEARCH_API_URL = new InjectionToken<string>(
   "Token for search api url"
@@ -46,21 +45,17 @@ export class MusicSearchService {
       })
       .pipe(
         map(resp => resp.albums.items),
-        // pluck("albums", "items")
         catchError((err, caught) => {
-
-
+          
           if (err instanceof HttpErrorResponse && err.status == 401) {
             this.security.authorize();
           }
-
-          // return caught.pipe(delay(1000))
           return throwError(new Error(err.error.error.message));
-          // return empty()
-          // return []
+
         })
       );
   }
 }
 
+import { Observable, empty, throwError } from "rxjs";
 import { pluck, map, catchError, delay } from "rxjs/operators";
