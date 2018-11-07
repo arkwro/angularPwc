@@ -1,11 +1,26 @@
 <!-- https://getbootstrap.com/docs/4.1/components/input-group/#button-addons -->
 
-<div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Search" [formControl]="queryForm.get('query')">
+<div class="form-group mb-3" [formGroup]="queryForm">
+
+
+  <input type="text" class="form-control" placeholder="Search" formControlName="query">
+
+
+  <div formGroupName="options">
+
+    <input type="text" class="form-control" formControlName="type">
+
+    <div *ngFor="let control of markets.controls">
+
+        <input type="text" class="form-control" [formControl]="control">
+
+    </div>
+
+    <button (click)="addMarket()">Add</button>
+  </div>
 
 </div>
 
-<!-- <div class="input-group-append">
-  <button class="btn btn-outline-secondary"
-          (click)="search(queryRef.value)">Search</button>
+<!-- <div class=" input-group-append">
+  <button class="btn btn-outline-secondary" (click)="search(queryRef.value)">Search</button>
 </div> -->
