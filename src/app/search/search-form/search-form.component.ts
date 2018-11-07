@@ -16,25 +16,17 @@ export class SearchFormComponent implements OnInit {
   queryForm: FormGroup;
   markets: FormArray;
 
-  constructor(private bob: FormBuilder) {
-    this.queryForm = this.bob.group({
-      query: ["batman"],
-      //
-      options: this.bob.group({
-        type: ["album"],
-        //
-        markets: this.bob.array([["PL"], ["UK"]])
-      })
+  constructor() {
+    this.queryForm = new FormGroup({
+      query: new FormControl("batman")
     });
-    this.markets = this.queryForm.get("options.markets") as FormArray;
+
+    this.queryForm.get("query")
+        .valueChanges.subscribe(query => {
+          this.search(query);
+        });
 
     console.log(this.queryForm);
-  }
-
-  addMarket() {
-    (this.queryForm.get("options.markets") as FormArray).push(
-      this.bob.control("")
-    );
   }
 
   ngOnInit() {}
