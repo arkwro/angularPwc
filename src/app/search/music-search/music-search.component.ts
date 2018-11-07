@@ -17,16 +17,18 @@ export class MusicSearchComponent implements OnInit {
   constructor(private musicSearch: MusicSearchService) {}
 
   ngOnInit() {
-    this.withLoading(this.musicSearch.getAlbums().pipe(delay(1500))).subscribe(
-      albums => (this.albums = albums),
-      error => (this.message = error.message)
-    );
+    this.musicSearch
+      .getAlbums()
+      .subscribe(
+        albums => (this.albums = albums),
+        error => (this.message = error.message)
+      );
   }
 
-  withLoading<T>(obs: Observable<T>) {
-    this.loading = true;
-    return obs.pipe(
-      tap(() => (this.loading = false), () => (this.loading = false))
-    );
-  }
+  // withLoading<T>(obs: Observable<T>) {
+  //   this.loading = true;
+  //   return obs.pipe(
+  //     tap(() => (this.loading = false), () => (this.loading = false))
+  //   );
+  // }
 }

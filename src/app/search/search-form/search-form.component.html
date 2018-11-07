@@ -1,3 +1,11 @@
-<p>
-  search-form works!
-</p>
+<!-- https://getbootstrap.com/docs/4.1/components/input-group/#button-addons -->
+
+<div class="input-group mb-3">
+  <input type="text" class="form-control" placeholder="Search" 
+    #queryRef (keyup.enter)="search(queryRef.value)">
+
+  <div class="input-group-append">
+    <button class="btn btn-outline-secondary"
+            (click)="search(queryRef.value)">Search</button>
+  </div>
+</div>
