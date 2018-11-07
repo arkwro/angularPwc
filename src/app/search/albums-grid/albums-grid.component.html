@@ -1,8 +1,5 @@
 <div class="card-group">
-  <ng-container *ngFor="let album of [1,2,3,4,5,6]; index as i">
-    <div *ngIf="i % 4 == 0" class="w-100"></div>
-    <div app-album-card></div>
-  </ng-container>
+  <div app-album-card *ngFor="let album of [1,2,3,4,5,6]"></div>
 </div>
 
 <!-- https://placeholder.com/ -->
