@@ -1,6 +1,8 @@
 import { NgModule, ModuleWithProviders } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { AuthConfig, SecurityService } from './security.service';
+import { AuthConfig, SecurityService } from "./security.service";
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
+import { AuthInterceptorService } from "./auth-interceptor.service";
 
 @NgModule({
   declarations: [],
@@ -13,9 +15,8 @@ import { AuthConfig, SecurityService } from './security.service';
   ]
 })
 export class SecurityModule {
-
   constructor(private security: SecurityService) {
-    this.security.getToken()
+    this.security.getToken();
   }
 
   /**
@@ -29,6 +30,11 @@ export class SecurityModule {
         {
           provide: AuthConfig,
           useValue: config
+        },
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: AuthInterceptorService,
+          multi: true
         }
       ]
     } as ModuleWithProviders;
