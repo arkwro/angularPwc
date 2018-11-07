@@ -1,16 +1,5 @@
 <div class="card-group">
-  <div app-album-card *ngFor="let album of [1,2,3,4,5,6]"></div>
-</div>
-
-<!-- https://placeholder.com/ -->
-<!-- https://www.placecage.com/ -->
-<!-- http://place-hoff.com/ -->
-<!-- .card-group>.card>img.card-img-top>.card-body>h5.card-title -->
-<!--  [class.active]="true" -->
-
-<!-- <ul>
-  <div>
-    <li></li>
-    <li></li>
+  <div app-album-card [album]="album"
+       *ngFor="let album of albums">
   </div>
-</ul> -->
+</div>
