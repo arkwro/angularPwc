@@ -5,10 +5,17 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { PlaylistsModule } from "./playlists/playlists.module";
 import { SharedModule } from "./shared/shared.module";
+import { SearchModule } from "./search/search.module";
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, PlaylistsModule, SharedModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    PlaylistsModule,
+    SharedModule,
+    SearchModule
+  ],
   providers: [],
   // entryComponents:[AppComponent]
   bootstrap: [AppComponent]

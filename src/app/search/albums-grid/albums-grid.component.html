@@ -1,0 +1,19 @@
+<div class="card-group">
+  <ng-container *ngFor="let album of [1,2,3,4,5,6]; index as i">
+    <div *ngIf="i % 4 == 0" class="w-100"></div>
+    <div app-album-card></div>
+  </ng-container>
+</div>
+
+<!-- https://placeholder.com/ -->
+<!-- https://www.placecage.com/ -->
+<!-- http://place-hoff.com/ -->
+<!-- .card-group>.card>img.card-img-top>.card-body>h5.card-title -->
+<!--  [class.active]="true" -->
+
+<!-- <ul>
+  <div>
+    <li></li>
+    <li></li>
+  </div>
+</ul> -->
