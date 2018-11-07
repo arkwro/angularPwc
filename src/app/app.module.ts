@@ -8,6 +8,7 @@ import { SharedModule } from "./shared/shared.module";
 import { SearchModule } from "./search/search.module";
 import { environment } from "src/environments/environment";
 import { SecurityModule } from "./security/security.module";
+import { SecurityService } from './security/security.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,6 +25,8 @@ import { SecurityModule } from "./security/security.module";
   bootstrap: [AppComponent]
 })
 export class AppModule {
+  
+
   // constructor(private app:ApplicationRef){  }
   // ngDoBootstrap(){
   //   this.app.bootstrap(placki? AppComponent : AwesomeComponent)

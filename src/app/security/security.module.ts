@@ -1,6 +1,6 @@
 import { NgModule, ModuleWithProviders } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { AuthConfig } from "./security.service";
+import { AuthConfig, SecurityService } from './security.service';
 
 @NgModule({
   declarations: [],
@@ -13,6 +13,11 @@ import { AuthConfig } from "./security.service";
   ]
 })
 export class SecurityModule {
+
+  constructor(private security: SecurityService) {
+    this.security.getToken()
+  }
+
   /**
    * I need some confs ;-)
    * @param config

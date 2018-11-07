@@ -12,7 +12,7 @@ export const environment = {
     auth_url: "https://accounts.spotify.com/authorize",
     redirect_uri: "http://localhost:4200/",
     response_type: "token",
-    client_id: ""
+    client_id: "6b4222a14a8445fc85818fd242ed2a5a"
   }
 };
 
