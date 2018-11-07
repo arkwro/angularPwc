@@ -9,6 +9,7 @@ import {
   SEARCH_API_URL,
   MusicSearchService
 } from "./services/music-search.service";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import {
     AlbumsGridComponent,
     AlbumCardComponent
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, HttpClientModule],
   exports: [MusicSearchComponent],
   providers: [
     {
