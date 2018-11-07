@@ -1,5 +1,5 @@
 import { Directive, Input, HostBinding } from "@angular/core";
-import { NgModel, NG_VALIDATORS, Validator } from "@angular/forms";
+import { NgModel, NG_VALIDATORS, Validator, FormControl } from "@angular/forms";
 
 @Directive({
   selector: "[appValidate]",
@@ -16,7 +16,7 @@ export class ValidateDirective implements Validator {
 
   constructor(/* private model: NgModel */) {}
 
-  validate(control) {
+  validate(control:FormControl) {
     this.valid = control.value !== "placki"; //this.appValidate;
     return this.valid ? null : { placki: true };
   }

@@ -13,10 +13,10 @@ import { Input } from "@angular/core";
 })
 export class UnlessDirective {
 
-  viewCache:ViewRef
+  viewCache:ViewRef | null
 
   @Input()
-  set appUnless(hide) {
+  set appUnless(hide:boolean) {
     if (hide) {
       // this.vcr.clear()
       this.viewCache = this.vcr.detach(0)

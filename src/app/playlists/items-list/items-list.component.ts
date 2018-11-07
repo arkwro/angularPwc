@@ -29,7 +29,7 @@ export class ItemsListComponent implements OnInit {
     this.selectedChange.emit(playlist)
   }
 
-  indexFn(index, item) {
+  indexFn(index:number, item:Playlist) {
     // console.log(index,item)
     return item.id;
   }

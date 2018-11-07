@@ -28,7 +28,7 @@ export class PlaylistsViewComponent implements OnInit {
     }
   ];
 
-  selected: Playlist;
+  selected: Playlist | null;
 
   select(playlist: Playlist) {
     this.selected = this.selected == playlist ? null : playlist;

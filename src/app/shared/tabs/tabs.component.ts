@@ -23,25 +23,25 @@ export class TabsComponent implements OnInit {
   @ContentChildren(TabComponent)
   tabs: QueryList<TabComponent>;
 
-  active: TabComponent;
+  active: TabComponent | null;
 
   ngAfterContentInit() {
     this.tabs.forEach(tab => {
       tab.activeChange.subscribe(() => {
-        this.toggle(tab)
+        this.toggle(tab);
       });
     });
   }
 
   ngAfterViewInit() {
-    this.nav.activeChange.subscribe(tab=>{
-      this.toggle(tab)
-    })
+    this.nav.activeChange.subscribe((tab: TabComponent) => {
+      this.toggle(tab);
+    });
 
     // ExpressionChangedAfterItHasBeenCheckedError: ;-)
-    setTimeout(()=>{
+    setTimeout(() => {
       this.nav.tabs = this.tabs;
-    })
+    });
   }
 
   constructor() {}
@@ -53,6 +53,6 @@ export class TabsComponent implements OnInit {
     this.tabs.forEach(tab => {
       tab.open = tab == this.active;
     });
-    this.nav.active = this.active
+    this.nav.active = this.active;
   }
 }

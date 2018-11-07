@@ -21,7 +21,7 @@ import {
 })
 export class HighlightDirective {
   @Input()
-  appHighlight;
+  appHighlight:string;
 
   @HostBinding("style.color")
   get currentColor() {
