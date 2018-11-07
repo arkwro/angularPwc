@@ -1,19 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  FormArray
+} from "@angular/forms";
 
 @Component({
-  selector: 'app-search-form',
-  templateUrl: './search-form.component.html',
-  styleUrls: ['./search-form.component.css']
+  selector: "app-search-form",
+  templateUrl: "./search-form.component.html",
+  styleUrls: ["./search-form.component.css"]
 })
 export class SearchFormComponent implements OnInit {
+  queryForm: FormGroup;
 
-  constructor() { }
+  constructor() {
+    this.queryForm = new FormGroup({
+      query: new FormControl("batman",{
+        updateOn:'blur'
+      }),
+      type: new FormControl("album")
+    });
 
-  ngOnInit() {
+    console.log(this.queryForm)
   }
 
-  search(query:string){
-    console.log(query)
-  }
+  ngOnInit() {}
 
+  search(query: string) {
+    console.log(query);
+  }
 }
