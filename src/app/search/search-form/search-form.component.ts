@@ -3,7 +3,8 @@ import {
   AbstractControl,
   FormControl,
   FormGroup,
-  FormArray
+  FormArray,
+  FormBuilder
 } from "@angular/forms";
 
 @Component({
@@ -15,14 +16,14 @@ export class SearchFormComponent implements OnInit {
   queryForm: FormGroup;
   markets: FormArray;
 
-  constructor() {
-    this.queryForm = new FormGroup({
-      query: new FormControl("batman"),
-      options: new FormGroup({
-        type: new FormControl("album"),
-        markets: new FormArray([
-          new FormControl("PL"), 
-          new FormControl("UK")])
+  constructor(private bob: FormBuilder) {
+    this.queryForm = this.bob.group({
+      query: ["batman"],
+      //
+      options: this.bob.group({
+        type: ["album"],
+        //
+        markets: this.bob.array([["PL"], ["UK"]])
       })
     });
     this.markets = this.queryForm.get("options.markets") as FormArray;
@@ -32,7 +33,7 @@ export class SearchFormComponent implements OnInit {
 
   addMarket() {
     (this.queryForm.get("options.markets") as FormArray).push(
-      new FormControl("")
+      this.bob.control("")
     );
   }
 
