@@ -12,8 +12,10 @@
       {{message}}
     </p>
 
+    <div class="lds-ring" *ngIf="loading">
+      <div></div>
+    </div>
+
     <app-albums-grid [albums]="albums"></app-albums-grid>
   </div>
 </div>
-
-
