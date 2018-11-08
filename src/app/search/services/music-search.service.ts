@@ -24,7 +24,9 @@ export class MusicSearchService {
   constructor(
     private http: HttpClient,
     @Inject(SEARCH_API_URL) private search_api_url: string
-  ) {}
+  ) {
+    console.log(this.albums$)
+  }
 
   albums$ = new BehaviorSubject<Album[]>([]);
 
