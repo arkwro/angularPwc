@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 import { Album } from "src/app/models/album";
 import { HttpClient } from "@angular/common/http";
-import { Observable, of, Subject } from "rxjs";
+import { Observable, of, Subject, ReplaySubject } from "rxjs";
 import { map, concat, startWith } from "rxjs/operators";
 
 import { AlbumsResponse } from "../../models/album";
@@ -27,7 +27,7 @@ export class MusicSearchService {
   ) {}
 
   albums: Album[] = [];
-  albums$ = new Subject<Album[]>();
+  albums$ = new ReplaySubject<Album[]>(1);
 
   search(query: string) {
     this.http
@@ -40,11 +40,10 @@ export class MusicSearchService {
       .pipe(map(resp => resp.albums.items))
       .subscribe(albums => {
         this.albums$.next(albums);
-        this.albums = albums;
       });
   }
 
   getAlbums() {
-    return this.albums$.pipe(startWith(this.albums));
+    return this.albums$
   }
 }
