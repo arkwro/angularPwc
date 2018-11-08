@@ -3,12 +3,20 @@
 
   <input type="text" class="form-control" placeholder="Search" formControlName="query">
 
-  <div *ngIf="queryForm.get('query')?.hasError('required')">
-    Field is required
-  </div>
 
-  <div *ngIf="queryForm.get('query')?.getError('minlength') as error">
-    Minimum {{error.requiredLength}} characters
-  </div>
+  <ng-container *ngIf="queryForm.get('query') as field">
 
+    <div *ngIf="field.hasError('required')">
+      Field is required
+    </div>
+
+    <div *ngIf="field.getError('minlength') as error" >
+      Minimum {{error.requiredLength}} characters
+    </div>
+
+  </ng-container>
+
+  <!-- 
+    <form-messages [field]="queryForm.get('query')"></form-messages> 
+  -->
 </div>
