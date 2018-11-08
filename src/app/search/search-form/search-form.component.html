@@ -1,6 +1,7 @@
 <div class="form-group mb-3" [formGroup]="queryForm">
 
   <input type="text" class="form-control" placeholder="Search" formControlName="query">
+  
 
 
   <ng-container *ngIf="queryForm.get('query') as field">
