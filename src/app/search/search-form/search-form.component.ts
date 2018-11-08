@@ -33,7 +33,9 @@ export class SearchFormComponent implements OnInit {
       Validators.required,
       Validators.minLength(3)
     ])
-  });
+  },[
+    Validators.required,
+  ]);
 
   constructor() {
     this.queryForm
