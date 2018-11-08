@@ -1,7 +1,9 @@
 <!-- Search Form -->
 <div class="row">
   <div class="col">
-    <app-search-form (queryChange)="search($event)">
+    <app-search-form
+    [query]="query$ | async"
+    (queryChange)="search($event)">
     </app-search-form>
   </div>
 </div>

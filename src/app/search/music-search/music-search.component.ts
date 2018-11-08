@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from "@angular/core";
 import { Album } from "src/app/models/album";
 import { MusicSearchService } from "../services/music-search.service";
 import { Subscription, Subject } from "rxjs";
-import { takeUntil, tap, map } from "rxjs/operators";
+import { takeUntil, tap, map, catchError } from "rxjs/operators";
 
 @Component({
   selector: "app-music-search",
@@ -12,13 +12,13 @@ import { takeUntil, tap, map } from "rxjs/operators";
 export class MusicSearchComponent implements OnInit {
   message = "";
   loading = false;
-
   albums: Album[];
 
+  query$ = this.musicSearch.getQuery();
+
   albums$ = this.musicSearch.getAlbums().pipe(
-    // tap(albums => console.log(albums)),
-    // map(albums => albums.slice(5,10)),
-    tap(albums => (this.albums = albums))
+    tap(albums => (this.albums = albums)),
+    catchError(error => (this.message = error.message))
   );
 
   constructor(private musicSearch: MusicSearchService) {}

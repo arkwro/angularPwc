@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter, Input } from "@angular/core";
 import { Observable, Observer } from "rxjs";
 import {
   AbstractControl,
@@ -74,10 +74,19 @@ export class SearchFormComponent implements OnInit {
   queryForm = new FormGroup({
     query: new FormControl(
       "",
-      [Validators.required, Validators.minLength(3) /*  , censor("placki") */],
+      [Validators.required, Validators.minLength(3)],
       [asyncCensor("batman")]
     )
   });
+
+  @Input()
+  set query(query: string) {
+    this.queryForm.get("query")!.setValue(query, {
+      onlySelf: true,
+      // Dont do search 
+      emitEvent: false
+    });
+  }
 
   constructor() {
     const queryField = this.queryForm.get("query")!;

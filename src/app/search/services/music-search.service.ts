@@ -25,12 +25,15 @@ export class MusicSearchService {
     private http: HttpClient,
     @Inject(SEARCH_API_URL) private search_api_url: string
   ) {
-    console.log(this.albums$)
+    console.log(this.albums$);
   }
 
   albums$ = new BehaviorSubject<Album[]>([]);
+  query$ = new BehaviorSubject<string>("batman");
 
   search(query: string) {
+    this.query$.next(query);
+
     this.http
       .get<AlbumsResponse>(this.search_api_url, {
         params: {
@@ -45,6 +48,10 @@ export class MusicSearchService {
   }
 
   getAlbums() {
-    return this.albums$.asObservable()
+    return this.albums$.asObservable();
+  }
+
+  getQuery() {
+    return this.query$.asObservable();
   }
 }
