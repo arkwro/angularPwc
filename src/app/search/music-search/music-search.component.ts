@@ -8,7 +8,8 @@ import { takeUntil, tap, map, catchError } from "rxjs/operators";
   selector: "app-music-search",
   templateUrl: "./music-search.component.html",
   styleUrls: ["./music-search.component.css"],
-  viewProviders:[MusicSearchService]
+
+   viewProviders:[MusicSearchService]
 })
 export class MusicSearchComponent implements OnInit {
   message = "";
