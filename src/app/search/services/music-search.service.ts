@@ -45,6 +45,6 @@ export class MusicSearchService {
   }
 
   getAlbums() {
-    return this.albums$;
+    return this.albums$.asObservable()
   }
 }

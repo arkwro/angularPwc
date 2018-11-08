@@ -10,9 +10,10 @@ import { takeUntil } from "rxjs/operators";
   styleUrls: ["./music-search.component.css"]
 })
 export class MusicSearchComponent implements OnInit {
-  albums: Album[];
   message = "";
   loading = false;
+
+  albums$ = this.musicSearch.getAlbums();
 
   constructor(private musicSearch: MusicSearchService) {}
 
@@ -20,18 +21,5 @@ export class MusicSearchComponent implements OnInit {
     this.musicSearch.search(query);
   }
 
-  ngOnInit() {
-    this.musicSearch
-      .getAlbums()
-      .pipe(takeUntil(this.destory))
-      .subscribe(
-        albums => (this.albums = albums),
-        error => (this.message = error.message)
-      );
-  }
-  destory = new Subject();
-
-  ngOnDestroy() {
-    this.destory.next();
-  }
+  ngOnInit() {}
 }

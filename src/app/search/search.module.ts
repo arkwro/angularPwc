@@ -13,13 +13,13 @@ import { HttpClientModule } from "@angular/common/http";
 import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
+  imports: [ReactiveFormsModule, CommonModule, HttpClientModule],
   declarations: [
     MusicSearchComponent,
     SearchFormComponent,
     AlbumsGridComponent,
     AlbumCardComponent
   ],
-  imports: [ReactiveFormsModule, CommonModule, HttpClientModule],
   exports: [MusicSearchComponent],
   providers: [
     {

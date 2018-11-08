@@ -21,6 +21,8 @@
     </div>
 
     <!-- Results -->
-    <app-albums-grid [albums]="albums"></app-albums-grid>
+    <p>Found {{(albums$ | async).length}} results</p>
+    
+    <app-albums-grid [albums]="albums$ | async"></app-albums-grid>
   </div>
 </div>
