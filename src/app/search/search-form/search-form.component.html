@@ -15,6 +15,10 @@
         Minimum {{error.requiredLength}} characters
       </div>
 
+      <div *ngIf="field.getError('censor') as error">
+        Field cannot contain text including "{{error.badword}}"
+      </div>
+
     </ng-container>
   </ng-container>
 

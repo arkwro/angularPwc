@@ -16,11 +16,18 @@ import {
   debounceTime
 } from "rxjs/operators";
 
-const censor: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-  
-  const hasError = (control.value as string).includes("batman");
+const censor = (badword: string): ValidatorFn => (
+  control: AbstractControl
+): ValidationErrors | null => {
+  const hasError = (control.value as string).includes(badword);
 
-  return hasError ? { censor: true } : null;
+  return hasError
+    ? {
+        censor: {
+          badword
+        }
+      }
+    : null;
 };
 
 @Component({
@@ -33,7 +40,7 @@ export class SearchFormComponent implements OnInit {
     query: new FormControl("", [
       Validators.required,
       Validators.minLength(3),
-      censor
+      censor("placki")
     ])
   });
 
