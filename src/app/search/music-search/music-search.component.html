@@ -1,21 +1,26 @@
 <!-- Search Form -->
 <div class="row">
   <div class="col">
-    <app-search-form></app-search-form>
+    <app-search-form (queryChange)="search($event)">
+    </app-search-form>
   </div>
 </div>
 
 <!-- Search results -->
 <div class="row">
   <div class="col">
+
+    <!-- Error message -->
     <p class="alert alert-danger" *ngIf="message">
       {{message}}
     </p>
 
+    <!-- Loader -->
     <div class="lds-ring" *ngIf="loading">
       <div></div>
     </div>
 
+    <!-- Results -->
     <app-albums-grid [albums]="albums"></app-albums-grid>
   </div>
 </div>

@@ -1,8 +1,6 @@
 import { Component, OnInit, Inject } from "@angular/core";
 import { Album } from "src/app/models/album";
 import { MusicSearchService } from "../services/music-search.service";
-import { Observable } from "rxjs";
-import { tap, delay } from "rxjs/operators";
 
 @Component({
   selector: "app-music-search",
@@ -16,19 +14,14 @@ export class MusicSearchComponent implements OnInit {
 
   constructor(private musicSearch: MusicSearchService) {}
 
-  ngOnInit() {
+  search(query) {
     this.musicSearch
-      .getAlbums()
+      .getAlbums(query)
       .subscribe(
         albums => (this.albums = albums),
         error => (this.message = error.message)
       );
   }
 
-  // withLoading<T>(obs: Observable<T>) {
-  //   this.loading = true;
-  //   return obs.pipe(
-  //     tap(() => (this.loading = false), () => (this.loading = false))
-  //   );
-  // }
+  ngOnInit() {}
 }
