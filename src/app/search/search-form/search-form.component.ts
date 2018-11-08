@@ -15,7 +15,9 @@ import {
   distinctUntilKeyChanged,
   distinctUntilChanged,
   filter,
-  debounceTime
+  debounceTime,
+  combineLatest,
+  withLatestFrom
 } from "rxjs/operators";
 
 const censor = (badword: string): ValidatorFn => (
@@ -31,6 +33,9 @@ const censor = (badword: string): ValidatorFn => (
       }
     : null;
 };
+
+// const asyncCensor = (option: type) =>
+//                     (value: string) => value == option.correctValue;
 
 const asyncCensor = (badword: string): AsyncValidatorFn => (
   control: AbstractControl
@@ -51,7 +56,7 @@ const asyncCensor = (badword: string): AsyncValidatorFn => (
       observer.complete();
     }, 1500);
 
-    return /* onUnsubscribe */() => {
+    return /* onUnsubscribe */ () => {
       clearTimeout(handle);
     };
 
@@ -70,22 +75,30 @@ export class SearchFormComponent implements OnInit {
     query: new FormControl(
       "",
       [Validators.required, Validators.minLength(3) /*  , censor("placki") */],
-      [asyncCensor("placki")]
+      [asyncCensor("batman")]
     )
   });
 
   constructor() {
     const queryField = this.queryForm.get("query")!;
 
-    queryField.valueChanges
-      .pipe(
-        debounceTime(400),
-        filter(query => query.length >= 3),
-        distinctUntilChanged()
-      )
-      .subscribe(query => {
-        this.search(query);
-      });
+    const status$ = queryField.statusChanges;
+    const valid$ = status$.pipe(filter(status => status == "VALID"));
+
+    const value$ = queryField.valueChanges.pipe(
+      debounceTime(400),
+      filter(query => query.length >= 3),
+      distinctUntilChanged()
+    );
+
+    const validValue$ = valid$.pipe(
+      // combineLatest(value$, (valid, value) => value)
+      withLatestFrom(value$, (valid, value) => value)
+    );
+
+    validValue$.subscribe((query: string) => {
+      this.search(query);
+    });
 
     console.log(this.queryForm);
   }
@@ -97,5 +110,6 @@ export class SearchFormComponent implements OnInit {
 
   search(query: string) {
     this.queryChange.emit(query);
+    // console.log(query)
   }
 }
