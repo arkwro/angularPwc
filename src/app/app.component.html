@@ -6,18 +6,23 @@
       </h1>
       <app-music-search></app-music-search>
     </div>
-    <div class="col">
-      <h1>
-        Music App 😋!
-      </h1>
-      <app-music-search></app-music-search>
-    </div>
-    <div class="col">
-      <h1>
-        Music App 😋!
-      </h1>
-      <button (click)="hide = !hide">Toggle</button>
-      <app-music-search *ngIf="hide"></app-music-search>
-    </div>
+
+    <ng-container appSearchProvider>
+
+      <div class="col">
+        <h1>
+          Music App 😋!
+        </h1>
+        <app-music-search></app-music-search>
+      </div>
+      <div class="col">
+        <h1>
+          Music App 😋!
+        </h1>
+        <button (click)="hide = !hide">Toggle</button>
+        <app-music-search *ngIf="hide"></app-music-search>
+      </div>
+    </ng-container>
+
   </div>
 </div>

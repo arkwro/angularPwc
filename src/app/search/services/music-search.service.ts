@@ -54,4 +54,8 @@ export class MusicSearchService {
   getQuery() {
     return this.query$.asObservable();
   }
+
+  ngOnDestroy(){
+    // when in viewProviders/Providers
+  }
 }

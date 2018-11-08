@@ -11,6 +11,7 @@ import {
 } from "./services/music-search.service";
 import { HttpClientModule } from "@angular/common/http";
 import { ReactiveFormsModule } from "@angular/forms";
+import { SearchProviderDirective } from './search-provider.directive';
 
 @NgModule({
   imports: [ReactiveFormsModule, CommonModule, HttpClientModule],
@@ -18,9 +19,10 @@ import { ReactiveFormsModule } from "@angular/forms";
     MusicSearchComponent,
     SearchFormComponent,
     AlbumsGridComponent,
-    AlbumCardComponent
+    AlbumCardComponent,
+    SearchProviderDirective
   ],
-  exports: [MusicSearchComponent],
+  exports: [MusicSearchComponent, SearchProviderDirective],
   providers: [
     {
       provide: SEARCH_API_URL,
