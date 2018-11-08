@@ -16,9 +16,12 @@ import {
   debounceTime
 } from "rxjs/operators";
 
-// const censor:ValidatorFn = (control:AbstractControl):ValidationErrors | null => {
+const censor: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+  
+  const hasError = (control.value as string).includes("batman");
 
-// }
+  return hasError ? { censor: true } : null;
+};
 
 @Component({
   selector: "app-search-form",
@@ -27,7 +30,11 @@ import {
 })
 export class SearchFormComponent implements OnInit {
   queryForm = new FormGroup({
-    query: new FormControl("", [Validators.required, Validators.minLength(3)])
+    query: new FormControl("", [
+      Validators.required,
+      Validators.minLength(3),
+      censor
+    ])
   });
 
   constructor() {

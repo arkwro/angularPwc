@@ -2,13 +2,7 @@
 <div class="row">
   <div class="col">
     <app-search-form (queryChange)="search($event)">
-    </app-search-form>
-    <!-- Typeahead -->
-    <!-- https://ng-bootstrap.github.io/#/components/typeahead/examples#http -->
-    <input list="results"  (input)="search($event.target.value)">
-    <datalist id="results">
-      <option *ngFor="let album of albums" [value]="album.name">
-    </datalist>
+    </app-search-form>  
   </div>
 </div>
 
