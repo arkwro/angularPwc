@@ -1,13 +1,14 @@
 import { Component, OnInit, Inject } from "@angular/core";
 import { Album } from "src/app/models/album";
-import { MusicSearchService } from "../services/music-search.service";
+import { MusicSearchService } from '../services/music-search.service';
 import { Subscription, Subject } from "rxjs";
 import { takeUntil, tap, map, catchError } from "rxjs/operators";
 
 @Component({
   selector: "app-music-search",
   templateUrl: "./music-search.component.html",
-  styleUrls: ["./music-search.component.css"]
+  styleUrls: ["./music-search.component.css"],
+  viewProviders:[MusicSearchService]
 })
 export class MusicSearchComponent implements OnInit {
   message = "";

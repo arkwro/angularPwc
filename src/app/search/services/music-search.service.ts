@@ -25,7 +25,6 @@ export class MusicSearchService {
     private http: HttpClient,
     @Inject(SEARCH_API_URL) private search_api_url: string
   ) {
-
     this.query$
       .pipe(
         map(query => ({
@@ -35,11 +34,9 @@ export class MusicSearchService {
         switchMap(params =>
           this.http.get<AlbumsResponse>(this.search_api_url, { params })
         ),
-        // switchAll(),
         map(resp => resp.albums.items)
       )
       .subscribe(albums => this.albums$.next(albums));
-    // .subscribe(this.albums$)
   }
 
   albums$ = new BehaviorSubject<Album[]>([]);

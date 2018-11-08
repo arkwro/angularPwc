@@ -83,10 +83,15 @@ export class SearchFormComponent implements OnInit {
   set query(query: string) {
     this.queryForm.get("query")!.setValue(query, {
       onlySelf: true,
-      // Dont do search 
+      // Dont do search
       emitEvent: false
     });
   }
+
+  ngOnInit() {}
+
+  @Output()
+  queryChange = new EventEmitter<string>();
 
   constructor() {
     const queryField = this.queryForm.get("query")!;
@@ -111,11 +116,6 @@ export class SearchFormComponent implements OnInit {
 
     console.log(this.queryForm);
   }
-
-  ngOnInit() {}
-
-  @Output()
-  queryChange = new EventEmitter<string>();
 
   search(query: string) {
     this.queryChange.emit(query);
