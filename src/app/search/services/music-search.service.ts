@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 import { Album } from "src/app/models/album";
 import { HttpClient } from "@angular/common/http";
-import { Observable, of, Subject, ReplaySubject } from "rxjs";
+import { Observable, of, Subject, ReplaySubject, BehaviorSubject } from "rxjs";
 import { map, concat, startWith } from "rxjs/operators";
 
 import { AlbumsResponse } from "../../models/album";
@@ -26,8 +26,7 @@ export class MusicSearchService {
     @Inject(SEARCH_API_URL) private search_api_url: string
   ) {}
 
-  albums: Album[] = [];
-  albums$ = new ReplaySubject<Album[]>(1);
+  albums$ = new BehaviorSubject<Album[]>([]);
 
   search(query: string) {
     this.http
@@ -44,6 +43,6 @@ export class MusicSearchService {
   }
 
   getAlbums() {
-    return this.albums$
+    return this.albums$;
   }
 }
