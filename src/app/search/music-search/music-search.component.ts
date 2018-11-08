@@ -14,7 +14,7 @@ export class MusicSearchComponent implements OnInit {
 
   constructor(private musicSearch: MusicSearchService) {}
 
-  search(query) {
+  search(query:string) {
     this.musicSearch
       .getAlbums(query)
       .subscribe(

@@ -20,27 +20,21 @@ import {
 
 // }
 
-
 @Component({
   selector: "app-search-form",
   templateUrl: "./search-form.component.html",
   styleUrls: ["./search-form.component.css"]
 })
 export class SearchFormComponent implements OnInit {
-
   queryForm = new FormGroup({
-    query: new FormControl("",[
-      Validators.required,
-      Validators.minLength(3)
-    ])
-  },[
-    Validators.required,
-  ]);
+    query: new FormControl("", [Validators.required, Validators.minLength(3)])
+  });
 
   constructor() {
-    this.queryForm
-      .get("query")
-      .valueChanges.pipe(
+    const queryField = this.queryForm.get("query")!;
+
+    queryField.valueChanges
+      .pipe(
         debounceTime(400),
         filter(query => query.length >= 3),
         distinctUntilChanged()
