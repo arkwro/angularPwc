@@ -1,7 +1,12 @@
-import { Injectable, Inject, InjectionToken } from "@angular/core";
+import {
+  Injectable,
+  Inject,
+  InjectionToken,
+  EventEmitter
+} from "@angular/core";
 import { Album } from "src/app/models/album";
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Observable, of } from "rxjs";
 import { map } from "rxjs/operators";
 
 import { AlbumsResponse } from "../../models/album";
@@ -21,27 +26,25 @@ export class MusicSearchService {
     @Inject(SEARCH_API_URL) private search_api_url: string
   ) {}
 
-  albums: Album[] = [
-    {
-      id: "123",
-      name: "Awesome Service Album",
-      images: [
-        {
-          url: "http://placekitten.com/300/300"
-        }
-      ]
-    }
-  ];
+  albums: Album[] = [];
 
-  getAlbums(query = "batman") {
-    
-    return this.http
+  search(query: string) {
+    this.http
       .get<AlbumsResponse>(this.search_api_url, {
         params: {
           type: "album",
           q: query
         }
       })
-      .pipe(map(resp => resp.albums.items));
+      .pipe(map(resp => resp.albums.items))
+      .subscribe(albums => {
+        this.albums$.emit(albums);
+      });
+  }
+
+  albums$ = new EventEmitter<Album[]>();
+
+  getAlbums() {
+    return this.albums$.asObservable()
   }
 }
