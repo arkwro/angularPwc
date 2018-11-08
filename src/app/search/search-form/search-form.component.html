@@ -2,7 +2,7 @@
 
   <input type="text" class="form-control" placeholder="Search" formControlName="query">
   
-
+  <p *ngIf="queryForm.pending">Please wait ...</p>
 
   <ng-container *ngIf="queryForm.get('query') as field">
     <ng-container *ngIf="field.dirty || field.touched">

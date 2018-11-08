@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { Observable, Observer } from "rxjs";
 import {
   AbstractControl,
   FormControl,
@@ -6,6 +7,7 @@ import {
   FormArray,
   FormBuilder,
   ValidatorFn,
+  AsyncValidatorFn,
   ValidationErrors,
   Validators
 } from "@angular/forms";
@@ -30,6 +32,34 @@ const censor = (badword: string): ValidatorFn => (
     : null;
 };
 
+const asyncCensor = (badword: string): AsyncValidatorFn => (
+  control: AbstractControl
+): Observable<ValidationErrors | null> => {
+  const hasError = (control.value as string).includes(badword);
+
+  return Observable.create((observer: Observer<ValidationErrors | null>) => {
+    const handle = setTimeout(() => {
+      observer.next(
+        hasError
+          ? {
+              censor: {
+                badword
+              }
+            }
+          : null
+      );
+      observer.complete();
+    }, 1500);
+
+    return /* onUnsubscribe */() => {
+      clearTimeout(handle);
+    };
+
+    // return this.http.get('validate',{params:{value}}).pipe(map(resp => errors))
+    // return timer(200).pipe(map(resp => errors)))
+  });
+};
+
 @Component({
   selector: "app-search-form",
   templateUrl: "./search-form.component.html",
@@ -37,11 +67,11 @@ const censor = (badword: string): ValidatorFn => (
 })
 export class SearchFormComponent implements OnInit {
   queryForm = new FormGroup({
-    query: new FormControl("", [
-      Validators.required,
-      Validators.minLength(3),
-      censor("placki")
-    ])
+    query: new FormControl(
+      "",
+      [Validators.required, Validators.minLength(3) /*  , censor("placki") */],
+      [asyncCensor("placki")]
+    )
   });
 
   constructor() {
