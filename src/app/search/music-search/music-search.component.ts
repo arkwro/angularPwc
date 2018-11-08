@@ -20,14 +20,14 @@ export class MusicSearchComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.sub = this.musicSearch
+    this.sub.add(this.musicSearch
       .getAlbums()
       .subscribe(
         albums => (this.albums = albums),
         error => (this.message = error.message)
-      );
+      ))
   }
-  sub: Subscription
+  sub = new Subscription()
 
   ngOnDestroy() {
     this.sub.unsubscribe()
