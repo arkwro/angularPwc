@@ -7,7 +7,7 @@ import {
 import { Album } from "src/app/models/album";
 import { HttpClient } from "@angular/common/http";
 import { Observable, of, Subject, ReplaySubject, BehaviorSubject } from "rxjs";
-import { map, concat, startWith, switchMap } from "rxjs/operators";
+import { map, concat, startWith, switchMap, switchAll } from "rxjs/operators";
 
 import { AlbumsResponse } from "../../models/album";
 
@@ -25,6 +25,7 @@ export class MusicSearchService {
     private http: HttpClient,
     @Inject(SEARCH_API_URL) private search_api_url: string
   ) {
+
     this.query$
       .pipe(
         map(query => ({
@@ -34,6 +35,7 @@ export class MusicSearchService {
         switchMap(params =>
           this.http.get<AlbumsResponse>(this.search_api_url, { params })
         ),
+        // switchAll(),
         map(resp => resp.albums.items)
       )
       .subscribe(albums => this.albums$.next(albums));
