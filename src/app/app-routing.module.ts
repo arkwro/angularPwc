@@ -3,6 +3,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { PlaylistsViewComponent } from "./playlists/playlists-view/playlists-view.component";
 import { MusicSearchComponent } from "./search/music-search/music-search.component";
 import { PlaylistContainerComponent } from "./playlists/containers/playlist-container/playlist-container.component";
+import { PlaylistResolveService } from './playlists/services/playlist-resolve.service';
 
 const routes: Routes = [
   {
@@ -19,6 +20,9 @@ const routes: Routes = [
         component: PlaylistContainerComponent,
         data: {
           title: "placki"
+        },
+        resolve:{
+          playlist: PlaylistResolveService
         }
       }
     ]
@@ -42,6 +46,9 @@ const routes: Routes = [
       // paramsInheritanceStrategy:'always',
       // useHash: true
     })
+  ],
+  providers:[
+    PlaylistResolveService
   ],
   exports: [RouterModule]
 })

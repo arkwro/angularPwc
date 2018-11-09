@@ -1,7 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { PlaylistsService } from "../../playlists.service";
 import { ActivatedRoute } from "@angular/router";
-import { map, filter, switchMap } from "rxjs/operators";
+import { map, filter, switchMap, pluck } from "rxjs/operators";
+import { Playlist } from "src/app/models/playlist";
 
 @Component({
   selector: "app-playlist-container",
@@ -14,16 +15,20 @@ export class PlaylistContainerComponent implements OnInit {
     private route: ActivatedRoute,
     private service: PlaylistsService
   ) {
-    console.log(route.snapshot.data)
+    // console.log(route.snapshot.data)
   }
 
-  playlist = this.route.paramMap.pipe(
-    map(parmMap => parmMap.get("id")),
-    filter(id => id !== null),
-    switchMap(id => {
-      return this.service.getPlaylist(parseInt(id!, 10));
-    })
+  playlist = this.route.data.pipe(
+    pluck<{}, Playlist>("playlist")
   );
+
+  // playlist = this.route.paramMap.pipe(
+  //   map(parmMap => parmMap.get("id")),
+  //   filter(id => id !== null),
+  //   switchMap(id => {
+  //     return this.service.getPlaylist(parseInt(id!, 10));
+  //   })
+  // );
 
   ngOnInit() {}
 }
