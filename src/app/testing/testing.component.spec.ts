@@ -5,14 +5,12 @@ import { TestingComponent } from "./testing.component";
 fdescribe("TestingComponent", () => {
   let instance: TestingComponent;
 
-  beforeEach((done) => {
-    TestBed.configureTestingModule({
+  beforeEach(() => {
+    return TestBed.configureTestingModule({
       declarations: [TestingComponent],
       imports: [],
       providers: []
-    }).compileComponents().then(()=>{
-      done()
-    })
+    }).compileComponents()
 
     // TestBed.createComponent()
   });
