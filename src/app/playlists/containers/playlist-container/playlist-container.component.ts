@@ -13,7 +13,9 @@ export class PlaylistContainerComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private service: PlaylistsService
-  ) {}
+  ) {
+    console.log(route.snapshot.data)
+  }
 
   playlist = this.route.paramMap.pipe(
     map(parmMap => parmMap.get("id")),

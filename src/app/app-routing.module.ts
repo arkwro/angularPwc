@@ -11,12 +11,15 @@ const routes: Routes = [
     pathMatch: "full" //'prefix'
   },
   {
-    path: "playlists/",
+    path: "playlists",
     component: PlaylistsViewComponent,
     children: [
       {
         path: ":id",
-        component: PlaylistContainerComponent
+        component: PlaylistContainerComponent,
+        data: {
+          title: "placki"
+        }
       }
     ]
   },
@@ -34,7 +37,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
-      enableTracing: true
+      // enableTracing: true
       // onSameUrlNavigation:'ignore',
       // paramsInheritanceStrategy:'always',
       // useHash: true

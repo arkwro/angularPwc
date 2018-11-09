@@ -20,17 +20,19 @@ export class PlaylistsListComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private service: PlaylistsService
-  ) {}
+  ) {
+    
+  }
 
   playlists$ = this.service.getPlaylists();
 
-  selected$ = this.route.firstChild!.paramMap.pipe(
-    map(parmMap => parmMap.get("id")),
-    filter(id => id !== null),
-    switchMap(id => {
-      return this.service.getPlaylist(parseInt(id!, 10));
-    })
-  );
+  // selected$ = this.route.firstChild.paramMap.pipe(
+  //   map(parmMap => parmMap.get("id")),
+  //   filter(id => id !== null),
+  //   switchMap(id => {
+  //     return this.service.getPlaylist(parseInt(id!, 10));
+  //   })
+  // );
 
   select(playlist: Playlist) {
     this.router.navigate(["/playlists", playlist.id]);
