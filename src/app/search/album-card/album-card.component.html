@@ -5,8 +5,6 @@
 <div class="card-body">
   <h5 class="card-title">
 
-    <input type="range" max="30" (input)="len = $event.target.value">
-
-    {{album.name | shorten: len }}</h5>
+    {{album.name | shorten: 25 }}</h5>
 </div>
 <!-- </div> -->
