@@ -16,7 +16,12 @@ export class MusicSearchComponent implements OnInit {
   loading = false;
   albums: Album[];
 
-  query$ = this.musicSearch.getQuery();
+  // query$ = this.musicSearch.getQuery();
+
+  query$ = this.route.queryParamMap.pipe(
+    map(paramMap => paramMap.get("query")),
+    tap((query: string) => this.musicSearch.search(query))
+  );
 
   albums$ = this.musicSearch.getAlbums().pipe(
     tap(albums => (this.albums = albums)),
@@ -31,14 +36,13 @@ export class MusicSearchComponent implements OnInit {
 
   ngOnInit() {
     // const query = this.route.snapshot.queryParamMap.get("query");
-    
-    this.route.queryParamMap
-      .pipe(map(paramMap => paramMap.get("query")))
-      .subscribe(query => {
-        if (query) {
-          this.musicSearch.search(query);
-        }
-      });
+    // this.route.queryParamMap
+    //   .pipe(map(paramMap => paramMap.get("query")))
+    //   .subscribe(query => {
+    //     if (query) {
+    //       this.musicSearch.search(query);
+    //     }
+    //   });
   }
 
   search(query: string) {
