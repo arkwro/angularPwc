@@ -1,8 +1,23 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import {
+  async,
+  ComponentFixture,
+  TestBed,
+  inject
+} from "@angular/core/testing";
 
 import { TestingComponent } from "./testing.component";
 import { By } from "@angular/platform-browser";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, NgModel } from "@angular/forms";
+import { Component } from "@angular/core";
+import { TestingServiceService } from "../testing-service.service";
+import { of } from 'rxjs';
+
+@Component({
+  template: `
+    <div appTEstDirective></div>
+  `
+})
+class WrapperComponent {}
 
 fdescribe("TestingComponent", () => {
   let fixture: ComponentFixture<TestingComponent>;
@@ -12,7 +27,14 @@ fdescribe("TestingComponent", () => {
     return TestBed.configureTestingModule({
       declarations: [TestingComponent],
       imports: [FormsModule],
-      providers: []
+      providers: [
+        {
+          provide: TestingServiceService,
+          useValue: jasmine.createSpyObj("TestingServiceService", [
+            "fetchMessage"
+          ])
+        }
+      ]
     }).compileComponents();
   }));
 
@@ -45,7 +67,7 @@ fdescribe("TestingComponent", () => {
   });
 
   it("should update message when input changes", () => {
-    const elem = fixture.debugElement.query(By.css("input"));
+    const elem = fixture.debugElement.query(By.directive(NgModel));
 
     elem.nativeElement.value = "Placki";
     elem.nativeElement.dispatchEvent(new Event("input"));
@@ -67,11 +89,23 @@ fdescribe("TestingComponent", () => {
   });
 
   it("sholud output message when save() was called", () => {
-    
     instance.messageChange.subscribe((msg: string) => {
       expect(msg).toBe("Placki!");
     });
 
     instance.save("Placki!");
   });
+
+  it("should fetch message from service", inject(
+    [TestingServiceService],
+    (service: jasmine.SpyObj<TestingServiceService>) => {
+
+      service.fetchMessage.and.returnValue(of('Placki'))
+
+      instance.fetchMessge();
+
+      expect(service.fetchMessage).toHaveBeenCalled();
+      expect(instance.message).toBe('Placki')
+    }
+  ));
 });

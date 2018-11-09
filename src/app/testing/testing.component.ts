@@ -1,4 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from "@angular/core";
+import { TestingServiceService } from "../testing-service.service";
 
 @Component({
   selector: "app-testing",
@@ -6,16 +7,22 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ["./testing.component.css"]
 })
 export class TestingComponent implements OnInit {
+  @Input()
   message = "testing works!";
 
-  constructor() {}
+  constructor(private service: TestingServiceService) {}
 
   ngOnInit() {}
+  fetchMessge() {
+    this.service.fetchMessage().subscribe(msg => {
+      this.message = msg;
+    });
+  }
 
   @Output()
-  messageChange = new EventEmitter<string>()
+  messageChange = new EventEmitter<string>();
 
-  save(message:string){
-    this.messageChange.emit(message)
+  save(message: string) {
+    this.messageChange.emit(message);
   }
 }
