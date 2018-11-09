@@ -11,7 +11,7 @@ const routes: Routes = [
     pathMatch: "full" //'prefix'
   },
   {
-    path: "playlists",
+    path: "playlists/",
     component: PlaylistsViewComponent,
     children: [
       {
