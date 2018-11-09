@@ -6,8 +6,25 @@ import {
 } from "@angular/core";
 import { Album } from "src/app/models/album";
 import { HttpClient } from "@angular/common/http";
-import { Observable, of, Subject, ReplaySubject, BehaviorSubject } from "rxjs";
-import { map, concat, startWith, switchMap, switchAll } from "rxjs/operators";
+import {
+  Observable,
+  of,
+  Subject,
+  ReplaySubject,
+  BehaviorSubject,
+  empty
+} from "rxjs";
+import {
+  map,
+  concat,
+  startWith,
+  switchMap,
+  switchAll,
+  catchError,
+  debounceTime,
+  filter,
+  distinctUntilChanged
+} from "rxjs/operators";
 
 import { AlbumsResponse } from "../../models/album";
 
@@ -27,12 +44,20 @@ export class MusicSearchService {
   ) {
     this.query$
       .pipe(
+        debounceTime(400),
+        filter(query => query.length >= 3),
+        distinctUntilChanged(),
         map(query => ({
           type: "album",
           q: query
         })),
         switchMap(params =>
-          this.http.get<AlbumsResponse>(this.search_api_url, { params })
+          this.http.get<AlbumsResponse>(this.search_api_url, { params }).pipe(
+            catchError(err => {
+              this.errors$.next(err);
+              return empty();
+            })
+          )
         ),
         map(resp => resp.albums.items)
       )
@@ -40,7 +65,7 @@ export class MusicSearchService {
   }
 
   albums$ = new BehaviorSubject<Album[]>([]);
-  query$ = new BehaviorSubject<string>("batman");
+  query$ = new BehaviorSubject<string>("");
   errors$ = new Subject<Error>();
 
   search(query: string) {
@@ -55,7 +80,7 @@ export class MusicSearchService {
     return this.query$.asObservable();
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     // when in viewProviders/Providers
   }
 }

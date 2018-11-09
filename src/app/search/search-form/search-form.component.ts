@@ -99,11 +99,7 @@ export class SearchFormComponent implements OnInit {
     const status$ = queryField.statusChanges;
     const valid$ = status$.pipe(filter(status => status == "VALID"));
 
-    const value$ = queryField.valueChanges.pipe(
-      debounceTime(400),
-      filter(query => query.length >= 3),
-      distinctUntilChanged()
-    );
+    const value$ = queryField.valueChanges;
 
     const validValue$ = valid$.pipe(
       // combineLatest(value$, (valid, value) => value)
