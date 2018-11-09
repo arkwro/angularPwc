@@ -30,10 +30,15 @@ export class MusicSearchComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const query = this.route.snapshot.queryParamMap.get("query");
-    if (query) {
-      this.musicSearch.search(query);
-    }
+    // const query = this.route.snapshot.queryParamMap.get("query");
+    
+    this.route.queryParamMap
+      .pipe(map(paramMap => paramMap.get("query")))
+      .subscribe(query => {
+        if (query) {
+          this.musicSearch.search(query);
+        }
+      });
   }
 
   search(query: string) {
@@ -47,7 +52,7 @@ export class MusicSearchComponent implements OnInit {
         queryParams: {
           query //:query
         },
-        replaceUrl: true,
+        // replaceUrl: true,
         relativeTo: this.route
       }
     );
