@@ -8,28 +8,33 @@ import { SharedModule } from "./shared/shared.module";
 // import { SearchModule } from "./search/search.module";
 import { environment } from "src/environments/environment";
 import { SecurityModule } from "./security/security.module";
-import { SecurityService } from './security/security.service';
+import { SecurityService } from "./security/security.service";
 import { HttpClientModule } from "@angular/common/http";
-import { TestingComponent } from './testing/testing.component';
+import { TestingComponent } from "./testing/testing.component";
+
+import { ServiceWorkerModule } from "@angular/service-worker";
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [AppComponent, TestingComponent],
   imports: [
+    // environment.production?
+    ServiceWorkerModule.register("ngsw-worker.js"),
+    // : [],
+    FormsModule,
     BrowserModule,
     PlaylistsModule,
     SharedModule,
     HttpClientModule,
     // SearchModule,
     SecurityModule.forRoot(environment.auth_config),
-    AppRoutingModule,
+    AppRoutingModule
   ],
   providers: [],
   // entryComponents:[AppComponent]
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  
-
   // constructor(private app:ApplicationRef){  }
   // ngDoBootstrap(){
   //   this.app.bootstrap(placki? AppComponent : AwesomeComponent)
