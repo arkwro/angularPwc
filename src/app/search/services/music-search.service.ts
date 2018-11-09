@@ -65,7 +65,7 @@ export class MusicSearchService {
   }
 
   albums$ = new BehaviorSubject<Album[]>([]);
-  query$ = new BehaviorSubject<string>("");
+  query$ = new BehaviorSubject<string>("alice");
   errors$ = new Subject<Error>();
 
   search(query: string) {

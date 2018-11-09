@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { TabsNavComponent } from './tabs-nav/tabs-nav.component';
 import { TabDirective } from './tab.directive';
 import { TabsDirective } from './tabs.directive';
+import { ShortenPipe } from './shorten.pipe';
 
 // ng g m shared -m playlists
 // ng g d shared/highlight -m shared --export true
@@ -26,7 +27,8 @@ import { TabsDirective } from './tabs.directive';
     TabComponent,
     TabsNavComponent,
     TabDirective,
-    TabsDirective
+    TabsDirective,
+    ShortenPipe
   ],
   exports: [
     HighlightDirective,
@@ -37,7 +39,8 @@ import { TabsDirective } from './tabs.directive';
     TabComponent,
     TabsNavComponent,
     TabDirective,
-    TabsDirective
+    TabsDirective,
+    ShortenPipe
   ]
 })
 export class SharedModule {}

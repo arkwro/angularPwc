@@ -3,6 +3,10 @@
 <img class="card-img-top" *ngIf="!album.images.length" src="http://place-hoff.com/300/300">
 
 <div class="card-body">
-  <h5 class="card-title">{{album.name}}</h5>
+  <h5 class="card-title">
+
+    <input type="range" max="30" (input)="len = $event.target.value">
+
+    {{album.name | shorten: len }}</h5>
 </div>
 <!-- </div> -->

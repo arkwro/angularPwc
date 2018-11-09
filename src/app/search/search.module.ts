@@ -12,9 +12,10 @@ import {
 import { HttpClientModule } from "@angular/common/http";
 import { ReactiveFormsModule } from "@angular/forms";
 import { SearchProviderDirective } from './search-provider.directive';
+import { SharedModule } from "../shared/shared.module";
 
 @NgModule({
-  imports: [ReactiveFormsModule, CommonModule, HttpClientModule],
+  imports: [ReactiveFormsModule, CommonModule, HttpClientModule, SharedModule],
   declarations: [
     MusicSearchComponent,
     SearchFormComponent,
