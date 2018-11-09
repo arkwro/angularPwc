@@ -28,6 +28,9 @@ const routes: Routes = [
       },
       {
         path: ":id",
+        resolve: {
+          playlist: PlaylistResolveService
+        },
         children: [
           {
             path: "",
@@ -37,9 +40,7 @@ const routes: Routes = [
           {
             path: "",
             component: PlaylistContainerComponent,
-            resolve: {
-              playlist: PlaylistResolveService
-            }
+            
           }
         ]
       }
@@ -79,7 +80,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {})],
+  imports: [RouterModule.forRoot(routes, {
+    paramsInheritanceStrategy:'emptyOnly'
+  })],
   providers: [PlaylistResolveService],
   exports: [RouterModule]
 })
