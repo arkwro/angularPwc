@@ -1,1 +1,4 @@
 <p class="message">{{message}}</p>
+
+<input type="text" [value]="message" (input)="
+message = $event.target.value">
