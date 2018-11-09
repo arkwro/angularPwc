@@ -18,6 +18,34 @@ const routes: Routes = [
     children: [
       {
         path: "",
+        children: [
+          {
+            path: "",
+            component: PlaylistsListComponent,
+            outlet: "list"
+          }
+        ]
+      },
+      {
+        path: ":id",
+        children: [
+          {
+            path: "",
+            component: PlaylistsListComponent,
+            outlet: "list"
+          },
+          {
+            path: "",
+            component: PlaylistContainerComponent,
+            resolve: {
+              playlist: PlaylistResolveService
+            }
+          }
+        ]
+      }
+
+      /*   {
+        path: "",
         component: PlaylistsListComponent,
         outlet: "list"
       },
@@ -36,7 +64,7 @@ const routes: Routes = [
         resolve: {
           playlist: PlaylistResolveService
         }
-      }
+      } */
     ]
   },
   {
