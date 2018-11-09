@@ -39,4 +39,16 @@ export class SecurityModule {
       ]
     } as ModuleWithProviders;
   }
+  static forChild() {
+    return {
+      ngModule: SecurityModule,
+      providers: [
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: AuthInterceptorService,
+          multi: true
+        }
+      ]
+    } as ModuleWithProviders;
+  }
 }

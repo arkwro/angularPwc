@@ -11,11 +11,20 @@ import {
 } from "./services/music-search.service";
 import { HttpClientModule } from "@angular/common/http";
 import { ReactiveFormsModule } from "@angular/forms";
-import { SearchProviderDirective } from './search-provider.directive';
+import { SearchProviderDirective } from "./search-provider.directive";
 import { SharedModule } from "../shared/shared.module";
+import { SearchRoutingModule } from "./search-routing/search-routing.module";
+import { SecurityModule } from "../security/security.module";
 
 @NgModule({
-  imports: [ReactiveFormsModule, CommonModule, HttpClientModule, SharedModule],
+  imports: [
+    ReactiveFormsModule,
+    CommonModule,
+    HttpClientModule,
+    SharedModule,
+    SearchRoutingModule,
+    SecurityModule.forChild()
+  ],
   declarations: [
     MusicSearchComponent,
     SearchFormComponent,
@@ -28,7 +37,7 @@ import { SharedModule } from "../shared/shared.module";
     {
       provide: SEARCH_API_URL,
       useValue: environment.search_api_url
-    }
+    },
     /* {
       provide: MusicSearchService,
       useFactory: (api_url: string) => {
@@ -45,7 +54,7 @@ import { SharedModule } from "../shared/shared.module";
     //   provide: MusicSearchService,
     //   useClass: MusicSearchService
     // },
-    // MusicSearchService
+    MusicSearchService
   ]
 })
 export class SearchModule {

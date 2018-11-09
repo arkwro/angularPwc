@@ -12,7 +12,7 @@ const routes: Routes = [
   // ... playlist
   {
     path: "search",
-    component: MusicSearchComponent
+    loadChildren: "./search/search.module#SearchModule"
   },
   {
     path: "**",

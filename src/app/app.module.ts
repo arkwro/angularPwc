@@ -5,10 +5,11 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { PlaylistsModule } from "./playlists/playlists.module";
 import { SharedModule } from "./shared/shared.module";
-import { SearchModule } from "./search/search.module";
+// import { SearchModule } from "./search/search.module";
 import { environment } from "src/environments/environment";
 import { SecurityModule } from "./security/security.module";
 import { SecurityService } from './security/security.service';
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,7 +17,8 @@ import { SecurityService } from './security/security.service';
     BrowserModule,
     PlaylistsModule,
     SharedModule,
-    SearchModule,
+    HttpClientModule,
+    // SearchModule,
     SecurityModule.forRoot(environment.auth_config),
     AppRoutingModule,
   ],
