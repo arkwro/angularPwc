@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: "app-testing",
@@ -11,4 +11,11 @@ export class TestingComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  @Output()
+  messageChange = new EventEmitter<string>()
+
+  save(message:string){
+    this.messageChange.emit(message)
+  }
 }

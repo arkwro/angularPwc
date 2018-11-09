@@ -56,4 +56,22 @@ fdescribe("TestingComponent", () => {
 
     expect(instance.message).toMatch("Placki");
   });
+
+  it('should call save() function when "Save" is clicked', () => {
+    const elem = fixture.debugElement.query(By.css(".save-btn"));
+    const spy = spyOn(instance, "save");
+
+    elem.triggerEventHandler("click", {});
+
+    expect(spy).toHaveBeenCalledWith(instance.message);
+  });
+
+  it("sholud output message when save() was called", () => {
+    
+    instance.messageChange.subscribe((msg: string) => {
+      expect(msg).toBe("Placki!");
+    });
+
+    instance.save("Placki!");
+  });
 });
