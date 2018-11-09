@@ -30,7 +30,7 @@ const routes: Routes = [
       enableTracing: true,
       // onSameUrlNavigation:'ignore',
       // paramsInheritanceStrategy:'always',
-      useHash: true
+      // useHash: true
     })
   ],
   exports: [RouterModule]
