@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from "@angular/core";
 import { Album } from "src/app/models/album";
 import { MusicSearchService } from "../services/music-search.service";
 import { Subscription, Subject } from "rxjs";
-import { takeUntil, tap, map, catchError } from "rxjs/operators";
+import { takeUntil, tap, map, catchError, filter } from "rxjs/operators";
 import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
@@ -20,6 +20,7 @@ export class MusicSearchComponent implements OnInit {
 
   query$ = this.route.queryParamMap.pipe(
     map(paramMap => paramMap.get("query")),
+    filter(query => !!query),
     tap((query: string) => this.musicSearch.search(query))
   );
 
@@ -56,7 +57,7 @@ export class MusicSearchComponent implements OnInit {
         queryParams: {
           query //:query
         },
-        // replaceUrl: true,
+        replaceUrl: true,
         relativeTo: this.route
       }
     );
