@@ -10,9 +10,10 @@ import { environment } from "src/environments/environment";
 import { SecurityModule } from "./security/security.module";
 import { SecurityService } from './security/security.service';
 import { HttpClientModule } from "@angular/common/http";
+import { TestingComponent } from './testing/testing.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, TestingComponent],
   imports: [
     BrowserModule,
     PlaylistsModule,
