@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { TestingComponent } from "./testing.component";
 import { By } from "@angular/platform-browser";
+import { FormsModule } from "@angular/forms";
 
 fdescribe("TestingComponent", () => {
   let fixture: ComponentFixture<TestingComponent>;
@@ -10,7 +11,7 @@ fdescribe("TestingComponent", () => {
   beforeEach(async(() => {
     return TestBed.configureTestingModule({
       declarations: [TestingComponent],
-      imports: [],
+      imports: [FormsModule],
       providers: []
     }).compileComponents();
   }));
@@ -37,9 +38,10 @@ fdescribe("TestingComponent", () => {
   });
 
   it("should display message in input", () => {
-    const elem = fixture.debugElement.query(By.css("input"));
-
-    expect(elem.nativeElement.value).toMatch(instance.message);
+    return fixture.whenStable().then(() => {
+      const elem = fixture.debugElement.query(By.css("input"));
+      expect(elem.nativeElement.value).toMatch(instance.message);
+    });
   });
 
   it("should update message when input changes", () => {
