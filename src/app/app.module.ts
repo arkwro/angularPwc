@@ -14,11 +14,11 @@ import { SecurityService } from './security/security.service';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     PlaylistsModule,
     SharedModule,
     SearchModule,
-    SecurityModule.forRoot(environment.auth_config)
+    SecurityModule.forRoot(environment.auth_config),
+    AppRoutingModule,
   ],
   providers: [],
   // entryComponents:[AppComponent]

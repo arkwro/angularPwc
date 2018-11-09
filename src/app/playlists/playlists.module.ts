@@ -10,6 +10,7 @@ import { SharedModule } from "../shared/shared.module";
 import { PlaylistsListComponent } from "./containers/playlists-list/playlists-list.component";
 import { PlaylistContainerComponent } from "./containers/playlist-container/playlist-container.component";
 import { RouterModule } from "@angular/router";
+import { PlaylistsRoutingModule } from './playlists-routing/playlists-routing.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { RouterModule } from "@angular/router";
     PlaylistContainerComponent
   ],
   entryComponents: [PlaylistsViewComponent],
-  imports: [CommonModule, FormsModule, SharedModule, RouterModule.forChild([])],
-  exports: [PlaylistsViewComponent]
+  imports: [CommonModule, FormsModule, SharedModule, PlaylistsRoutingModule],
+  // exports: [PlaylistsViewComponent]
 })
 export class PlaylistsModule {}
