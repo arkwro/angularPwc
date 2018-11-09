@@ -42,11 +42,16 @@ export class MusicSearchService {
     private http: HttpClient,
     @Inject(SEARCH_API_URL) private search_api_url: string
   ) {
-    this.query$
-      .pipe(
+    const myOperator = (obs: Observable<string>) =>
+      obs.pipe(
         debounceTime(400),
         filter(query => query.length >= 3),
-        distinctUntilChanged(),
+        distinctUntilChanged()
+      );
+
+    this.query$
+      .pipe(
+        myOperator,
         map(query => ({
           type: "album",
           q: query
