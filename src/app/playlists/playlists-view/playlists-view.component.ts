@@ -7,26 +7,7 @@ import { Playlist } from "../../models/playlist";
   styleUrls: ["./playlists-view.component.css"]
 })
 export class PlaylistsViewComponent implements OnInit {
-  playlists: Playlist[] = [
-    {
-      id: 123,
-      name: "Angular Hits",
-      favourite: true,
-      color: "#ff00ff"
-    },
-    {
-      id: 234,
-      name: "Best of Angular ",
-      favourite: false,
-      color: "#00ffff"
-    },
-    {
-      id: 345,
-      name: "Angular Top 20",
-      favourite: true,
-      color: "#ffff00"
-    }
-  ];
+  playlists: Playlist[] = [];
 
   selected: Playlist | null;
 

@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { PlaylistsViewComponent } from "./playlists/playlists-view/playlists-view.component";
 import { MusicSearchComponent } from "./search/music-search/music-search.component";
+import { PlaylistContainerComponent } from "./playlists/containers/playlist-container/playlist-container.component";
 
 const routes: Routes = [
   {
@@ -11,7 +12,13 @@ const routes: Routes = [
   },
   {
     path: "playlists",
-    component: PlaylistsViewComponent
+    component: PlaylistsViewComponent,
+    children: [
+      {
+        path: ":id",
+        component: PlaylistContainerComponent
+      }
+    ]
   },
   {
     path: "search",
@@ -27,7 +34,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
-      enableTracing: true,
+      enableTracing: true
       // onSameUrlNavigation:'ignore',
       // paramsInheritanceStrategy:'always',
       // useHash: true

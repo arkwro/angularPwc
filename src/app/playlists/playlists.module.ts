@@ -7,16 +7,21 @@ import { PlaylistDetailsComponent } from "./playlist-details/playlist-details.co
 
 import { FormsModule /* , DefaultValueAccessor */ } from "@angular/forms";
 import { SharedModule } from "../shared/shared.module";
+import { PlaylistsListComponent } from './containers/playlists-list/playlists-list.component';
+import { PlaylistContainerComponent } from './containers/playlist-container/playlist-container.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
     PlaylistsViewComponent,
     ItemsListComponent,
     ListItemComponent,
-    PlaylistDetailsComponent
+    PlaylistDetailsComponent,
+    PlaylistsListComponent,
+    PlaylistContainerComponent
   ],
   entryComponents:[PlaylistsViewComponent],
-  imports: [CommonModule, FormsModule, SharedModule],
+  imports: [CommonModule, FormsModule, SharedModule, RouterModule.forChild([])],
   exports: [PlaylistsViewComponent]
 })
 export class PlaylistsModule {}
